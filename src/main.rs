@@ -21,7 +21,7 @@ struct FloatingImage {
 
 impl FloatingImage {
     fn new(width: u32, height: u32, name: String) -> Self {
-        println!("NEW FLOATING IMAGE CREATED ");
+        
         let buffer_capacity = 3_655_744;
         let buffer = Vec::with_capacity(buffer_capacity.try_into().unwrap());
         FloatingImage {
@@ -89,7 +89,7 @@ fn set_rgba(vec: &Vec<u8>, start: usize, end: usize) -> Vec<u8> {
     for i in start..=end {
         let val: u8 = match vec.get(i) {
             Some(d) => *d,
-            None => panic!("Index not in bounds!!!!!!"),
+            None => panic!("PANIC!: Index not in bounds"),
         };
         rgba.push(val);
     }
@@ -112,7 +112,6 @@ fn main() -> Result<(), ImageDataError> {
     let combined_data = combine_images(image_1, image_2);
 
     output.set_data(combined_data)?;
-    println!("<<<<<<<<<<<<< SET DATA COMPLTED >>>>>>>>>>>>>>>");
 
     image::save_buffer_with_format(
         output.name,
